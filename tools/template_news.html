@@ -1,0 +1,62 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+__FONTS__
+  :root{--background:#06090d;--foreground:#fbf5df;--card:#0b151c;--border:#1f303b;--primary:#f80a72;--accent:#1bc3f3;--muted:#95b3c3;
+    --gradient-punk:linear-gradient(120deg,var(--primary) 0%,var(--primary) 45%,var(--accent) 100%);
+    --tc:__TCOLOR__}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{width:1080px;height:1350px;background:var(--background);color:var(--foreground);font-family:"Barlow",system-ui,sans-serif;position:relative;overflow:hidden}
+  .checker{position:absolute;inset:0;opacity:.55;background:conic-gradient(#0d1a22 25%,transparent 0 50%,#0d1a22 0 75%,transparent 0) 0 0/90px 90px}
+  .vignette{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 30%,__GLOW__,transparent 62%),radial-gradient(ellipse at 50% 100%,rgba(248,10,114,.2),transparent 55%)}
+  .header{position:absolute;left:0;right:0;top:0;height:120px;background:rgba(6,9,13,.9);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 56px}
+  .brand{display:flex;align-items:center;gap:20px}
+  .brand img{height:84px;width:auto}
+  .brand .name{font-family:"Bebas Neue",Impact,sans-serif;font-size:54px;letter-spacing:1.5px}
+  .brand .name b{font-weight:400;color:var(--accent)}
+  .tag{font-weight:700;font-size:26px;letter-spacing:7px;color:var(--primary)}
+  .tape{position:absolute;left:-40px;right:-40px;top:156px;height:78px;transform:rotate(-2.2deg);background:__TAPEBG__;
+        display:flex;align-items:center;overflow:hidden;white-space:nowrap;box-shadow:0 0 40px -6px rgba(248,10,114,.6)}
+  .tape span{font-family:"Bebas Neue",Impact,sans-serif;font-size:50px;letter-spacing:5px;color:__TAPEFG__;padding-left:30px}
+  .date{position:absolute;right:56px;top:262px;font-weight:700;font-size:24px;letter-spacing:5px;color:var(--muted)}
+  .card{position:absolute;left:56px;right:56px;top:306px;height:760px;background:var(--card);border:1px solid var(--border);border-radius:6px;
+        box-shadow:0 0 60px -12px __CARDGLOW__;overflow:hidden;padding:44px 48px;display:flex;flex-direction:column}
+  .wm{position:absolute;right:-70px;bottom:-60px;height:440px;opacity:.10;filter:grayscale(.2)}
+  .artist{position:relative;font-weight:700;font-size:34px;letter-spacing:6px;color:var(--tc);text-transform:uppercase}
+  .headline{position:relative;flex:1;margin-top:18px;font-family:"Bebas Neue",Impact,sans-serif;text-transform:uppercase;line-height:.96;letter-spacing:1px;overflow:hidden;
+            display:flex;align-items:center}
+  .headline div{width:100%}
+  .rule{position:relative;height:6px;border-radius:3px;background:var(--gradient-punk);margin:22px 0 22px}
+  .facts{position:relative;display:flex;flex-direction:column;gap:12px}
+  .fact{display:flex;align-items:baseline;gap:20px}
+  .fact i{font-style:normal;font-weight:700;font-size:22px;letter-spacing:5px;color:var(--muted);width:150px;flex:none;text-transform:uppercase}
+  .fact b{font-weight:600;font-size:38px;line-height:1.1;color:var(--foreground)}
+  .cta{position:absolute;left:56px;right:56px;bottom:56px;display:flex;flex-direction:column;gap:18px}
+  .btn{height:96px;border-radius:6px;background:var(--gradient-punk);display:flex;align-items:center;justify-content:center;gap:24px;box-shadow:0 0 0 12px rgba(248,10,114,.15),0 0 40px -5px var(--primary)}
+  .btn .play{width:0;height:0;border-left:38px solid var(--foreground);border-top:24px solid transparent;border-bottom:24px solid transparent}
+  .btn span{font-family:"Bebas Neue",Impact,sans-serif;font-size:66px;letter-spacing:2px}
+  .sub{text-align:center;font-weight:700;font-size:24px;letter-spacing:5px;color:var(--muted);text-transform:uppercase}
+  .sub b{color:var(--primary)}
+</style></head>
+<body>
+  <div class="checker"></div><div class="vignette"></div>
+  <div class="header"><div class="brand">__LOGO__<div class="name">POP PUNK <b>101</b></div></div><div class="tag">NEWS</div></div>
+  <div class="tape"><span>__TAPE__</span></div>
+  <div class="date">__DATE__</div>
+  <div class="card">
+    __WM__
+    <div class="artist">__ARTIST__</div>
+    <div class="headline"><div id="hl" style="font-size:150px">__HEADLINE__</div></div>
+    <div class="rule"></div>
+    <div class="facts">__FACTS__</div>
+  </div>
+  <div class="cta">
+    <div class="btn"><div class="play"></div><span>LISTEN LIVE – LINK IN BIO</span></div>
+    <div class="sub">Your pop-punk radio on <b>POP PUNK 101</b> · 24/7</div>
+  </div>
+<script>
+  function fit(){var h=document.getElementById('hl'),box=h.parentElement,s=150;h.style.fontSize=s+'px';
+    while(s>40&&(h.offsetHeight>box.clientHeight||h.scrollWidth>box.clientWidth)){s-=3;h.style.fontSize=s+'px';}}
+  fit(); document.fonts.ready.then(fit);
+</script>
+</body></html>
