@@ -29,9 +29,11 @@ def build_html(artist, song, year, photo=None, credit=None):
         photo_html = f'<img class="photo" src="data:image/{ext};base64,{b64(photo)}">'
         credit_html = f'<div class="credit">Photo: {html.escape(credit)}</div>' if credit else ""
     else:
-        n = len(artist)
-        size = 190 if n <= 10 else 150 if n <= 16 else 118 if n <= 24 else 92
-        photo_html = f'<div class="typo"><span style="font-size:{size}px">{html.escape(artist)}</span></div>'
+        import random
+        rnd = random.Random(artist + song)
+        bars = "".join(f'<i style="height:{rnd.randint(18, 100)}%"></i>' for _ in range(34))
+        big = f'<img class="big" src="data:image/png;base64,{b64(logo)}">' if logo.exists() else ""
+        photo_html = f'<div class="typo">{big}<div class="meter">{bars}</div></div>'
         credit_html = ""
     asize = int(min(104, 968 / (len(artist) * 0.43)))
     ssize = int(min(58, 700 / (len(song) * 0.43)))
