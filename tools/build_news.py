@@ -25,6 +25,20 @@ def slug(s):
 def caption(p):
     tags = TYPE_TAGS[p["type"]] + CORE + [t for t in p.get("tags", []) if t]
     return "\n".join([f"{HEAD[p['type']]}: {p['headline']}", "", p["body"].strip(), "", CTA, "", " ".join("#" + t for t in tags)])
+def np_times():
+    """All scheduled Now-Playing post times (non-news CSVs) to avoid collisions."""
+    out = []
+    for f in (ROOT / "publer").glob("*.csv"):
+        if f.name.startswith("news-"): continue
+        for r in list(csv.reader(open(f, encoding="utf-8")))[1:]:
+            try: out.append(dt.datetime.strptime(r[0], "%Y/%m/%d %H:%M"))
+            except Exception: pass
+    return out
+def free_time(when, taken):
+    """Shift +1h until no Now-Playing post is within 30 minutes."""
+    while any(abs((when - t).total_seconds()) < 1800 for t in taken):
+        when += dt.timedelta(hours=1)
+    return when
 def main(path):
     cfg = json.load(open(path, encoding="utf-8"))
     day = cfg["date"]
@@ -32,10 +46,12 @@ def main(path):
     img_dir.mkdir(parents=True, exist_ok=True)
     (ROOT / "publer").mkdir(exist_ok=True)
     rows, outs = [], []
+    taken = np_times()
     for i, p in enumerate(cfg["posts"], 1):
         name = f"{i:02d}-{p['type']}-{slug(p['artist'])}.png"
         outs.append(str(img_dir / name))
-        when = dt.datetime.strptime(f"{day} {p['time']}", "%Y-%m-%d %H:%M")
+        when = free_time(dt.datetime.strptime(f"{day} {p['time']}", "%Y-%m-%d %H:%M"), taken)
+        print("post", i, p["type"], "planned", p["time"], "->", when.strftime("%H:%M"))
         url = f"{RAW_BASE}/images/news/{day}/{name}"
         rows.append([when.strftime("%Y/%m/%d %H:%M"), caption(p), "", url, "", "", f"POP PUNK 101 news: {p['headline']}", "", "", "Photo", "", ""])
     with sync_playwright() as pw:
