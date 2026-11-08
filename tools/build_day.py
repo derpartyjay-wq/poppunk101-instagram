@@ -5,7 +5,8 @@ usage: python3 tools/build_day.py posts.json
 
 posts.json:
 {
-  "start": "2026-11-09 07:00",          # first post, Europe/Berlin, then +1 hour each
+  "start": "2026-11-09 07:00",          # first post, Europe/Berlin, then +step_hours each
+  "step_hours": 2,                       # optional, default 1
   "raw_base": "https://raw.githubusercontent.com/derpartyjay-wq/poppunk101-instagram/main",
   "posts": [
     {"artist": "...", "song": "...", "year": 2004,
@@ -48,11 +49,12 @@ def main(cfg_path):
     img_dir = ROOT / "images" / day
     img_dir.mkdir(parents=True, exist_ok=True)
     (ROOT / "publer").mkdir(exist_ok=True)
+    step = int(cfg.get("step_hours", 1))
     rows, items = [], []
     for i, p in enumerate(cfg["posts"], 1):
         name = f"{i:02d}-{slug(p['artist'])}-{slug(p['song'])}.png"
         items.append((str(img_dir / name), p["artist"], p["song"], p["year"], p.get("photo"), p.get("credit")))
-        when = start + dt.timedelta(hours=i - 1)
+        when = start + dt.timedelta(hours=(i - 1) * step)
         url = f"{cfg['raw_base']}/images/{day}/{name}"
         alt = f"Now playing on POP PUNK 101: {p['song']} by {p['artist']}"
         rows.append([when.strftime("%Y/%m/%d %H:%M"), caption(p), "", url, "", "", alt, "", "", "Photo", "", ""])
