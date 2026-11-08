@@ -23,6 +23,7 @@ from playwright.sync_api import sync_playwright
 import render
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
+RAW_BASE = "https://raw.githubusercontent.com/derpartyjay-wq/poppunk101-instagram/main"  # fixed, config value ignored
 CORE_TAGS = ["PopPunk", "PopPunkRadio", "PopPunk101", "NowPlaying", "PunkRock", "PopPunkForever"]
 CTA = "📻 POP PUNK 101 is your pop-punk radio, on air 24 hours a day. Tune in via the link in bio! 🔗"
 
@@ -55,7 +56,7 @@ def main(cfg_path):
         name = f"{i:02d}-{slug(p['artist'])}-{slug(p['song'])}.png"
         items.append((str(img_dir / name), p["artist"], p["song"], p["year"], p.get("photo"), p.get("credit")))
         when = start + dt.timedelta(hours=(i - 1) * step)
-        url = f"{cfg['raw_base']}/images/{day}/{name}"
+        url = f"{RAW_BASE}/images/{day}/{name}"
         alt = f"Now playing on POP PUNK 101: {p['song']} by {p['artist']}"
         rows.append([when.strftime("%Y/%m/%d %H:%M"), caption(p), "", url, "", "", alt, "", "", "Photo", "", ""])
     with sync_playwright() as pw:
