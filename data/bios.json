@@ -23,7 +23,10 @@
   "Good Charlotte": "This track is from the 2007 album Good Morning Revival.",
   "All Time Low": "Released in June 2009 via Hopeless Records, the song comes from the album Nothing Personal.",
   "Panic! At The Disco": "An American rock band, Panic! At The Disco included this track on their 2005 album A Fever You Can't Sweat Out.",
-  "The All-American Rejects": "Released as a single in September 2008, it led the album When the World Comes Down."
+  "The All-American Rejects": "Released as a single in September 2008, it led the album When the World Comes Down.",
+  "Relient K": "Relient K released Be My Escape in November 2004 as the lead single from their album Mmhmm, out on Gotee and Capitol.",
+  "Sugarcult": "American rock band Sugarcult put Bouncing Off the Walls on their 2001 album Start Static, and it followed as a single in 2002.",
+  "Boys Like Girls": "American band Boys Like Girls released Love Drunk as a single in June 2009, taken from their second studio album of the same name."
  },
  "songs": {
   "Avril Lavigne | Bite Me": 2021,
@@ -49,6 +52,23 @@
   "Good Charlotte | Keep Your Hands Off My Girl": 2007,
   "All Time Low | Damned If I Do Ya (Damned If I Don't)": 2009,
   "Panic! At The Disco | But It's Better If You Do": 2005,
-  "The All-American Rejects | Gives You Hell": 2008
+  "The All-American Rejects | Gives You Hell": 2008,
+  "Green Day | Basket Case": 1994,
+  "Paramore | crushcrushcrush": 2007,
+  "Sum 41 | In Too Deep": 2001,
+  "Mayday Parade | Jamie All Over": 2007,
+  "The Offspring | Why Don't You Get a Job?": 1998,
+  "Yellowcard | Lights and Sounds": 2005,
+  "Less Than Jake | Look What Happened": 2000,
+  "Simple Plan | I'm Just a Kid": 2002,
+  "Jimmy Eat World | The Middle": 2001,
+  "Neck Deep | In Bloom": 2017,
+  "Good Charlotte | Girls & Boys": 2002,
+  "Relient K | Be My Escape": 2004,
+  "Sugarcult | Bouncing Off the Walls": 2001,
+  "Boys Like Girls | Love Drunk": 2009,
+  "blink-182 | Dammit": 1997,
+  "The All-American Rejects | Dirty Little Secret": 2005,
+  "New Found Glory | My Friends Over You": 2002
  }
 }
