@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the daily NEWS package: images + Publer CSV (3 posts: release 08:00, tour 12:00, announced 15:00).
+"""Build the daily NEWS package: images + Publer CSV (up to 5 posts: 07:00, 10:30, 14:00, 17:30, 21:00; Now-Playing retired).
 
 usage: python3 tools/build_news.py news.json   (run from repo root)
 news.json: {"date": "2026-11-09", "posts": [
@@ -27,6 +27,7 @@ def caption(p):
     return "\n".join([f"{HEAD[p['type']]}: {p['headline']}", "", p["body"].strip(), "", CTA, "", " ".join("#" + t for t in tags)])
 def np_times():
     """All scheduled Now-Playing post times (non-news CSVs) to avoid collisions."""
+    return []  # Now-Playing retired 2026-11-13, no collision shifting
     out = []
     for f in (ROOT / "publer").glob("*.csv"):
         if f.name.startswith("news-"): continue
